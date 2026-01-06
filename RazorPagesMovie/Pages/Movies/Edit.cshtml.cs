@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 using RazorPagesMovie.Data;
@@ -15,9 +9,9 @@ namespace RazorPagesMovie.Pages.Movies
 {
     public class EditModel : PageModel
     {
-        private readonly RazorPagesMovie.Data.MovieContext _context;
+        private readonly MovieContext _context;
 
-        public EditModel(RazorPagesMovie.Data.MovieContext context)
+        public EditModel(MovieContext context)
         {
             _context = context;
         }
@@ -32,7 +26,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
+            Movie? movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
                 return NotFound();
@@ -54,7 +48,7 @@ namespace RazorPagesMovie.Pages.Movies
 
             try
             {
-                await _context.SaveChangesAsync();
+                _ = await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {

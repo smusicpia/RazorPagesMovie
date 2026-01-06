@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,9 +9,9 @@ namespace RazorPagesMovie.Pages.Movies
 {
     public class DetailsModel : PageModel
     {
-        private readonly RazorPagesMovie.Data.MovieContext _context;
+        private readonly MovieContext _context;
 
-        public DetailsModel(RazorPagesMovie.Data.MovieContext context)
+        public DetailsModel(MovieContext context)
         {
             _context = context;
         }
@@ -30,7 +25,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
+            Movie? movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
 
             if (movie is not null)
             {
