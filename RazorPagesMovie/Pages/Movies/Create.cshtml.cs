@@ -31,8 +31,8 @@ namespace RazorPagesMovie.Pages.Movies
                 return Page();
             }
 
-            _ = _context.Movie.Add(Movie);
-            _ = await _context.SaveChangesAsync();
+            _context.Movie.Add(Movie);
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

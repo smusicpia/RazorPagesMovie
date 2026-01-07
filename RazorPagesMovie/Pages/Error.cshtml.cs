@@ -1,4 +1,5 @@
 using System.Diagnostics;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -24,5 +25,4 @@ namespace RazorPagesMovie.Pages
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
     }
-
 }
