@@ -1,4 +1,5 @@
 ﻿@page
+@using RazorPagesMovie.Utility
 @model RazorPagesMovie.Pages.Movies.IndexModel
 
 @{
@@ -28,6 +29,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Movie[0].Rating)
             </th>
+            <th>
+                Token
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -48,6 +52,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Utility.GetLastChars(item.ConcurrencyToken)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
